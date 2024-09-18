@@ -1,0 +1,62 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.0'
+	id 'io.spring.dependency-management' version '1.1.5'
+	id 'com.vaadin' version '24.4.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('vaadinVersion', "24.4.6")
+}
+// gmail boguslaw12367@gmail.com
+// gmail tmp account: Boguslaw12367
+// gmail tmp pass: aezakmi123!
+// send grid password: Aezakmi123!alamakota
+// recovery code: 9VYPQGXAMN2JQ93K82C7NBC1
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.vaadin:vaadin-spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-mail:3.3.2'
+	// https://mvnrepository.com/artifact/com.google.apis/google-api-services-gmail
+	implementation 'com.google.apis:google-api-services-gmail:v1-rev110-1.25.0'
+	// https://mvnrepository.com/artifact/com.google.api-client/google-api-client
+	implementation 'com.mailersend:java-sdk:1.0.0'
+	implementation 'com.google.api-client:google-api-client:2.6.0'
+
+
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
